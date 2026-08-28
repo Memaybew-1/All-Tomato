@@ -1,8 +1,8 @@
-const btn = document.createElement('button');
-btn.id = 'btn-lay';
-btn.textContent = 'Click';
+const btn = document.createElement('a');
+link_um.id = 'link_um';
+link_um.textContent = 'Người Um';
 
-document.body.appendChild(btn);
+document.body.appendChild(link_um);
 
 btn.addEventListener('click', () => {
     console.log('Button clicked');
