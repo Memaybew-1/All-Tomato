@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Nhánh U-Um</title>
+    <style>
+        :root {
+            --bg-color: #0c0c0c;
+            --surface-color: #313131;
+            --border-color: #565656;
+            --text-dim: #7b7b7b;
+            --text-normal: #a0a0a0;
+            --text-light: #c5c5c5;
+            --text-white: #eaeaea;
+            --neon-glow: 0 0 8px rgba(234, 234, 234, 0.4);
+            --neon-border: 0 0 10px rgba(86, 86, 86, 0.6);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-tap-highlight-color: transparent;
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            user-select: none;
+        }
+
+        html, body {
+            width: 100%;
+            min-height: 100vh;
+            background-color: var(--bg-color);
+            color: var(--text-normal);
+            font-family: Arial, sans-serif;
+            font-size: 13px;
+            line-height: 1.5;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 12px;
+            overflow-x: hidden;
+            touch-action: manipulation;
+        }
+
+        .wiki-container {
+            width: 100%;
+            max-width: 480px;
+            background-color: var(--bg-color);
+            border: 1px solid var(--border-color);
+            box-shadow: var(--neon-border);
+            display: flex;
+            flex-direction: column;
+            padding: 16px;
+            position: relative;
+            animation: fadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        header {
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 12px;
+            margin-bottom: 16px;
+            text-align: left;
+            animation: slideDown 0.6s ease forwards;
+        }
+
+        h1 {
+            font-size: 20px;
+            color: var(--text-white);
+            font-weight: bold;
+            text-shadow: var(--neon-glow);
+            margin-bottom: 2px;
+        }
+
+        .subtitle {
+            font-size: 10px;
+            color: var(--text-dim);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .wiki-content {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        .section-block {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        h2.section-title {
+            font-size: 14px;
+            color: var(--text-white);
+            border-left: 2px solid var(--border-color);
+            padding-left: 8px;
+        }
+
+        .wiki-text {
+            font-size: 12px;
+            color: var(--text-light);
+            text-align: justify;
+        }
+
+        /* Khung ảnh minh hoạ tỉ lệ 2:3 nằm ngang (chiều rộng : chiều cao = 3 : 2) */
+        .image-box {
+            width: 100%;
+            aspect-ratio: 3 / 2;
+            background-color: var(--surface-color);
+            border: 1px solid var(--border-color);
+            border-radius: 3px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: var(--text-dim);
+            font-size: 11px;
+            box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
+            transition: all 0.3s ease;
+        }
+
+        .image-box:hover {
+            border-color: var(--text-normal);
+            box-shadow: var(--neon-glow);
+        }
+
+        .image-placeholder-icon {
+            font-size: 22px;
+            margin-bottom: 4px;
+            color: var(--text-normal);
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background-color: var(--surface-color);
+            color: var(--text-white);
+            text-decoration: none;
+            padding: 8px 12px;
+            border-radius: 3px;
+            border: 1px solid var(--border-color);
+            font-size: 11px;
+            width: fit-content;
+            transition: all 0.3s ease;
+            box-shadow: inset 0 0 4px rgba(0,0,0,0.5);
+            margin-top: 4px;
+        }
+
+        .back-link:hover, .back-link:active {
+            background-color: var(--border-color);
+            box-shadow: var(--neon-glow);
+            transform: translateX(-3px);
+        }
+
+        footer {
+            border-top: 1px solid var(--border-color);
+            margin-top: 16px;
+            padding-top: 10px;
+            text-align: center;
+            font-size: 10px;
+            color: var(--text-dim);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.98); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="wiki-container">
+        <header>
+            <h1>Umia-Đế Chế Thiên Đàng</h1>
+            <div class="subtitle">Bách khoa toàn thư về nhánh U-Um</div>
+        </header>
+
+        <div class="wiki-content">
+            <!-- Phần nội dung độc lập thứ nhất -->
+            <div class="section-block">
+                <h2 class="section-title">Hào Quang Tinh Tú, Người U</h2>
+                <p class="wiki-text">
+                    Người U là một chủng tộc sinh sống quanh đế quốc Umia-Đế chế thiên đàng đã được một thiếu niên người Ye khai báo với các nhà khoa học trong một lần sặc tinh.
+                    Về đặc tính, họ có thể sử dụng năng lượng pờ nắc ma từ mắt, trí thông minh vượt bậc so với  loài người.
+                    Người U mạnh nhất từng được biết đã trà trộn vào làm giáo viên toán ở trái đất vào những năm 19xx.
+
+                    Những hành động và các lần chạm tráng của cá thể này:
+                    Nhiều lần cản trở L.Q.K.P và K.S.D.
+                    Hai thanh niên đang luyện tập thể chất bằng việc đấm vào một cuốn sách bá khí hình 2 con heo thì bị một người U tấn công.
+                    Sau khi phát hiện một tên da đen không xuất đầu lộ diện và đang lẫn trốn, hắn quyết định lấy cái cớ là đọc nhầm tên để khai triển lazer đánh gãy cái chân què của tên nô lệ với khoản cách hơn 2 kilomet tấn.
+                    Khi 4 tên phản tặc đang bàn kế hoạch với lớp ngụy trang "chơi trò chơi" thì tên Linhlade đã đọc thần chú: "tứ trò bỉ", sau đó bốn tên lưu manh đã bị khuất phục bởi hào quang lade.
+                </p>
+            </div>
+
+            <!-- Khung ảnh minh hoạ tỉ lệ 2:3 nằm ngang (3:2) -->
+            <div class="image-box">
+                <img src="umia_minh_hoa.jpg" alt="Minh hoạ" style="width: 100%; height: 100%; object-fit: cover; border-radius: 3px;">
+            </div>
+
+            <!-- Phần nội dung độc lập thứ hai -->
+            <div class="section-block">
+                <h2 class="section-title">Dạng Sống Mặt Trời, Người Um</h2>
+                <p class="wiki-text">
+                    Người Um là một nhóm sinh vật sống chủ yếu tại bề mặt "mặt trời" được phát hiện bởi N.N Khopi sau nhiều tháng khổ dâm đến sặc tinh quan sát bằng kính thiên văn.
+                    Người Um có những đặc điểm như: biết bắn lade bằng mắt và dương vật, IQ cao hơn cả người U, lí do người Um có thể bắn lade là vì trên bề mặt mặt trời họ đã trồng một giống ớt có tên là "ớt cặc trời", loại ớt này chịu đc nhiệt độ cao và hút plasma như dinh dưỡng để sinh sống. Người Um ăn loại ớt này, ở những cá thể có tuổi thọ cao vì đã ăn quá nhiều nên bị nhiễm plade khiến những cá thể đó có thể bắn được lade.
+                </p>
+            </div>
+
+            <a href="index.html" class="back-link"><span>⬅</span> Quay lại trang chủ</a>
+        </div>
+
+        <footer>
+            <span>Dữ liệu tham khảo trực tuyến</span>
+        </footer>
+    </div>
+
+    <script>
+        document.addEventListener('gesturestart', function (e) {
+            e.preventDefault();
+        });
+        
+        document.addEventListener('contextmenu', function (e) {
+            e.preventDefault();
+        });
+    </script>
+</body>
+</html>
