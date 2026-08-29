@@ -2,49 +2,178 @@
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>All Tomato</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Trang Chủ</title>
     <style>
+        :root {
+            --bg-main: #1e1e1e;
+            --bg-card: #3d3d3d;
+            --text-muted: #7b7b7b;
+            --text-light: #b2b2b2;
+            --text-main: #eaeaea;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-user-select: none; /* Chặn bôi đen/chọn chữ trên webkit */
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            -webkit-touch-callout: none; /* Chặn menuữ cảnh trên iOS */
+            -webkit-tap-highlight-color: transparent;
+        }
+
         body {
-            background-color: #121212;
-            color: #e0e0e0;
-            font-family: sans-serif;
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 15px;
+            overflow-x: hidden;
+            touch-action: manipulation; /* Chặn double-tap zoom trên di động */
+        }
+
+        .container {
+            width: 100%;
+            max-width: 380px;
+            background: var(--bg-card);
+            border: 1px solid var(--text-muted);
+            border-radius: 4px; /* Bo góc nhỏ */
+            padding: 15px;
+            box-shadow: 0 0 10px var(--text-muted);
+            animation: fadeIn 0.8s ease-in-out, floatCard 4s ease-in-out infinite alternate;
+        }
+
+        h1 {
+            font-size: 1rem; /* Chữ nhỏ */
+            text-align: center;
+            margin-bottom: 15px;
+            color: var(--text-main);
+            text-shadow: 0 0 5px var(--text-light), 0 0 10px var(--text-light);
+            animation: pulseGlow 2s infinite alternate;
+        }
+
+        .link-list {
+            list-style: none;
             display: flex;
             flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            margin: 0;
+            gap: 8px;
         }
-        .link-container {
+
+        .link-item {
+            animation: slideInRight 0.5s ease forwards;
+            opacity: 0;
+        }
+
+        .link-item:nth-child(1) { animation-delay: 0.1s; }
+        .link-item:nth-child(2) { animation-delay: 0.2s; }
+        .link-item:nth-child(3) { animation-delay: 0.3s; }
+        .link-item:nth-child(4) { animation-delay: 0.4s; }
+        .link-item:nth-child(5) { animation-delay: 0.5s; }
+        .link-item:nth-child(6) { animation-delay: 0.6s; }
+        .link-item:nth-child(7) { animation-delay: 0.7s; }
+        .link-item:nth-child(8) { animation-delay: 0.8s; }
+
+        .link-item a {
             display: flex;
-            gap: 20px;
-            margin-top: 20px;
-        }
-        a {
-            color: #bb86fc;
+            align-items: center;
+            padding: 6px 10px; /* Nút nhỏ */
+            background-color: var(--bg-main);
+            color: var(--text-light);
             text-decoration: none;
-            font-size: 18px;
-            padding: 10px 20px;
-            border: 1px solid #333;
-            border-radius: 5px;
-            background-color: #1e1e1e;
-            transition: background-color 0.2s, color 0.2s;
+            font-size: 0.75rem; /* Chữ nhỏ */
+            border-radius: 3px; /* Bo góc nhỏ */
+            border: 1px solid var(--text-muted);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
         }
-        a:hover {
-            background-color: #bb86fc;
-            color: #121212;
+
+        .link-item a:hover, .link-item a:active {
+            color: var(--text-main);
+            border-color: var(--text-main);
+            box-shadow: 0 0 8px var(--text-light), inset 0 0 4px var(--text-muted);
+            transform: translateX(4px) scale(0.98);
+        }
+
+        .number {
+            color: var(--text-main);
+            font-weight: bold;
+            margin-right: 6px;
+            text-shadow: 0 0 4px var(--text-light);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        @keyframes slideInRight {
+            from { opacity: 0; transform: translateX(-15px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        @keyframes floatCard {
+            from { transform: translateY(0); }
+            to { transform: translateY(-4px); }
+        }
+
+        @keyframes pulseGlow {
+            from { text-shadow: 0 0 2px var(--text-muted); }
+            to { text-shadow: 0 0 6px var(--text-main), 0 0 10px var(--text-light); }
         }
     </style>
 </head>
 <body>
 
-    <h1>All Tomato</h1>
-    <h3>Trang Chủ</h3>
-    <div class="link-container">
-        <a href="um.html">Người Um</a>
-        <a href="ye.html">Người Ye</a>
+    <div class="container">
+        <h1>Trang Chủ All Tomato</h1>
+        <ul class="link-list">
+            <li class="link-item"><a href="#"><span class="number">1.</span> Trang chủ chính</a></li>
+            <li class="link-item"><a href="#"><span class="number">2.</span> Giới thiệu bản thân</a></li>
+            <li class="link-item"><a href="#"><span class="number">3.</span> Danh mục sản phẩm</a></li>
+            <li class="link-item"><a href="#"><span class="number">4.</span> Bài viết mới nhất</a></li>
+            <li class="link-item"><a href="#"><span class="number">5.</span> Thư viện hình ảnh</a></li>
+            <li class="link-item"><a href="#"><span class="number">6.</span> Dự án đang chạy</a></li>
+            <li class="link-item"><a href="#"><span class="number">7.</span> Tài nguyên hữu ích</a></li>
+            <li class="link-item"><a href="#"><span class="number">8.</span> Liên hệ hỗ trợ</a></li>
+        </ul>
     </div>
 
+    <script>
+        // Chặn click chuột phải để tránh bật menu tìm hiểu/inspect
+        document.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+        });
+
+        // Chặn các phím tắt phóng to (Ctrl + '+', Ctrl + '-', Ctrl + Scroll) hoặc F12
+        document.addEventListener('keydown', function(e) {
+            if (
+                e.key === 'F12' || 
+                (e.ctrlKey && (e.key === '+' || e.key === '-' || e.key === '=' || e.key === '0'))
+            ) {
+                e.preventDefault();
+            }
+        });
+
+        // Chặn phóng to bằng cách lăn chuột khi giữ Ctrl
+        window.addEventListener('wheel', function(e) {
+            if (e.ctrlKey) {
+                e.preventDefault();
+            }
+        }, { passive: false });
+
+        // Hiệu ứng phụ khi chạm/click vào link
+        document.querySelectorAll('.link-item a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+            });
+        });
+    </script>
 </body>
 </html>

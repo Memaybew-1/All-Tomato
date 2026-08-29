@@ -2,71 +2,243 @@
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trang Um</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Mini Wikipedia</title>
     <style>
+        :root {
+            --bg-main: #1e1e1e;
+            --bg-card: #3d3d3d;
+            --text-muted: #7b7b7b;
+            --text-light: #b2b2b2;
+            --text-main: #eaeaea;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            -webkit-touch-callout: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+
         body {
-            background-color: #121212;
-            color: #e0e0e0;
-            font-family: sans-serif;
-            padding: 40px;
-            max-width: 600px;
-            margin: 0 auto;
-            line-height: 1.6;
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 8px;
+            overflow-x: hidden;
+            touch-action: manipulation;
         }
-        .tieu-de {
-            font-size: 28px;
+
+        .container {
+            width: 100%;
+            max-width: 440px;
+            height: 96vh;
+            background: var(--bg-card);
+            border: 1px solid var(--text-muted);
+            border-radius: 4px;
+            padding: 12px;
+            box-shadow: 0 0 10px var(--text-muted);
+            animation: fadeIn 0.8s ease-in-out, floatCard 4s ease-in-out infinite alternate;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .wiki-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--text-muted);
+            padding-bottom: 6px;
+        }
+
+        .wiki-logo {
+            font-size: 0.8rem;
             font-weight: bold;
-            color: #bb86fc;
-            margin-bottom: 20px;
-            border-bottom: 1px solid #333;
-            padding-bottom: 10px;
+            color: var(--text-main);
+            text-shadow: 0 0 4px var(--text-light);
+            letter-spacing: 1px;
         }
-        .noi-dung {
-            font-size: 16px;
-            margin-bottom: 30px;
-            color: #b0bec5;
+
+        .wiki-badge {
+            font-size: 0.6rem;
+            color: var(--text-muted);
+            background-color: var(--bg-main);
+            padding: 2px 5px;
+            border-radius: 2px;
+            border: 1px solid var(--text-muted);
         }
-        .ket {
+
+        .wiki-body {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            flex-grow: 1;
+            justify-content: center;
+        }
+
+        h1 {
+            font-size: 1rem;
+            color: var(--text-main);
+            text-shadow: 0 0 5px var(--text-light);
+            animation: pulseGlow 2s infinite alternate;
+        }
+
+        /* Khung chứa ảnh minh hoạ */
+        .image-box {
+            width: 100%;
+            height: 110px;
+            background-color: var(--bg-main);
+            border: 1px solid var(--text-muted);
+            border-radius: 3px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .image-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Chữ thay thế nếu chưa có ảnh hoặc làm placeholder */
+        .image-placeholder {
+            font-size: 0.7rem;
+            color: var(--text-muted);
             font-style: italic;
-            background-color: #1e1e1e;
-            padding: 15px;
-            border-left: 4px solid #bb86fc;
-            margin-bottom: 30px;
         }
-        a {
-            color: #bb86fc;
+
+        .content-box {
+            background-color: var(--bg-main);
+            padding: 10px;
+            border-radius: 3px;
+            border: 1px solid var(--text-muted);
+            animation: slideInUp 0.6s ease forwards;
+            opacity: 0;
+            animation-delay: 0.2s;
+        }
+
+        .content {
+            font-size: 0.75rem;
+            color: var(--text-light);
+            line-height: 1.4;
+            text-align: justify;
+        }
+
+        .wiki-footer {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            font-style: italic;
+            border-top: 1px dashed var(--text-muted);
+            padding-top: 6px;
+            animation: slideInUp 0.6s ease forwards;
+            opacity: 0;
+            animation-delay: 0.4s;
+        }
+
+        .back-btn {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 6px 8px;
+            background-color: var(--bg-main);
+            color: var(--text-light);
             text-decoration: none;
-            padding: 8px 16px;
-            border: 1px solid #333;
-            border-radius: 5px;
-            background-color: #1e1e1e;
+            font-size: 0.75rem;
+            border-radius: 3px;
+            border: 1px solid var(--text-muted);
+            transition: all 0.3s ease;
+            text-align: center;
+            animation: slideInUp 0.6s ease forwards;
+            opacity: 0;
+            animation-delay: 0.6s;
         }
-        a:hover {
-            background-color: #bb86fc;
-            color: #121212;
+
+        .back-btn:hover, .back-btn:active {
+            color: var(--text-main);
+            border-color: var(--text-main);
+            box-shadow: 0 0 8px var(--text-light), inset 0 0 4px var(--text-muted);
+            transform: scale(0.98);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        @keyframes slideInUp {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes floatCard {
+            from { transform: translateY(0); }
+            to { transform: translateY(-4px); }
+        }
+
+        @keyframes pulseGlow {
+            from { text-shadow: 0 0 2px var(--text-muted); }
+            to { text-shadow: 0 0 6px var(--text-main), 0 0 10px var(--text-light); }
         }
     </style>
 </head>
 <body>
 
-    <div class="tieu-de">Giống loài người Um và những bí ẩn</div>
-    
-    <div class="noi-dung">
-        Người um là một nhóm sinh vật sống chủ yếu tại bề mặt "mặt trời" được phát hiện bởi N.N Khopi sau nhiều tháng khổ dâm đến sặc tinh quan sát bằng kính thiên văn.
-        Người um có những đặc điểm như: biết bắn lade bằng mắt, IQ > Người, lí do người um có thể bắn lade là vì trên bề mặt mặt trời họ đã trồng một giống ớt có tên là "ớt cặc trời", loại ớt này chịu đc nhiệt độ cao và hút plasma như dinh dưỡng để sinh sống. Người um ăn loại ớt này, ở những cá thể có tuổi thọ cao vì đã ăn quá nhiều nên bị nhiễm plade khiến những cá thể đó có thể bắn lade đc.
-        Người um mạnh nhất từng được bt đã giáng trần xuống trái đất vào những năm 19xx, những hành động của cá thể này: nhiều lần cản trở l.h.p và k.s.d, bắn lade một thg dân đen.
-    </div>
-    
-    <div class="ket">
-        Giống loài Um là những sinh vật người trái đất rất mạnh và thông minh có nguy cơ đe doạ loài người.
-        Hiện tại loài này còn đang được nghiên cứu và quan sát để hé lộ những bí mật ẩn giấu sau nguồn gốc, quốc vương,... của loài Um này.
-        
-        Nhà báo: Hào Sake.
-        Cập nhật: 28/8/2026.
+    <div class="container">
+        <div class="wiki-header">
+            <span class="wiki-logo">WIKI TOMATO</span>
+            <span class="wiki-badge">Bản 1.0</span>
+        </div>
+
+        <div class="wiki-body">
+            <h1>Dạng sống mặt trời, người Um</h1>
+
+            <!-- Thêm khung ảnh minh hoạ ở đây -->
+            <div class="image-box">
+                <!-- Thay link ảnh của bạn vào thuộc tính src bên dưới -->
+                <!-- <img src="link_anh_cua_ban.jpg" alt="Minh hoạ"> -->
+                <img src="nguoi_um.jpg" alt="Minh hoạ">
+            </div>
+
+            <div class="content-box">
+                <div class="content">
+                    Người um là một nhóm sinh vật sống chủ yếu tại bề mặt "mặt trời" được phát hiện bởi N.N Khopi sau nhiều tháng khổ dâm đến sặc tinh quan sát bằng kính thiên văn.
+                    Người um có những đặc điểm như: biết bắn lade bằng mắt, IQ > Người, lí do người um có thể bắn lade là vì trên bề mặt mặt trời họ đã trồng một giống ớt có tên là " ớt cặc trời", loại ớt này chịu đc nhiệt độ cao và hút plasma như dinh dưỡng để sinh sống. Người um ăn loại ớt này, ở những cá thể có tuổi thọ cao vì đã ăn quá nhiều nên bị nhiễm plade khiến những cá thể đó có thể bắn lade đc.
+                    Người um mạnh nhất từng được bt đã giáng trần xuống trái đất vào những năm 19xx, những hành động của cá thể này: nhiều lần cản trở l.h.p và k.s.d, bắn lade một thg dân đen.
+                </div>
+            </div>
+
+            <div class="wiki-footer">
+                c
+                c
+            </div>
+        </div>
+
+        <a href="index.html" class="back-btn">← Về lại trang chủ</a>
     </div>
 
-    <a href="index.html">Quay lại trang chủ</a>
-
+    <script>
+        document.addEventListener('contextmenu', function(e) { e.preventDefault(); });
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'F12' || (e.ctrlKey && (e.key === '+' || e.key === '-' || e.key === '=' || e.key === '0'))) {
+                e.preventDefault();
+            }
+        });
+        window.addEventListener('wheel', function(e) {
+            if (e.ctrlKey) { e.preventDefault(); }
+        }, { passive: false });
+    </script>
 </body>
 </html>
