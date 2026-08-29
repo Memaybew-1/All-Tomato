@@ -168,12 +168,16 @@
             }
         }, { passive: false });
 
-        // Hiệu ứng phụ khi chạm/click vào link
-        document.querySelectorAll('.link-item a').forEach(link => {
-            link.addEventListener('click', function(e) {
-                e.preventDefault();
-            });
+        // Chỉ giữ lại các tính năng chặn chuột phải/phóng to, KHÔNG chặn thẻ a nữa
+        document.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
         });
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'F12' || (e.ctrlKey && (e.key === '+' || e.key === '-' || e.key === '=' || e.key === '0'))) {
+                e.preventDefault();
+            }
+        });
+
     </script>
 </body>
 </html>
